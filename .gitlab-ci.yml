@@ -1,0 +1,65 @@
+stages:
+  - build
+  - deploy
+  - notify
+
+build:
+  stage: build
+  image: archlinux:latest
+  cache: {}
+  script:
+    - pacman -Sy --noconfirm base-devel gnupg git
+    - echo "$GPG_PRIVATE_KEY" | base64 -d > private.key
+    - gpg --import --batch private.key
+    - useradd builder -m
+    - passwd -d builder
+    - printf 'builder ALL=(ALL) ALL\n' | tee -a /etc/sudoers
+    - chown -R builder:builder .
+    - sudo -u builder npm install -g pnpm
+    - sudo -u builder make pack
+    - sudo -u builder makepkg -s --noconfirm
+    - echo "$GPG_PASSPHRASE" | gpg --batch --yes --pinentry-mode loopback --passphrase-fd 0 --detach-sign *.pkg.tar.zst
+  artifacts:
+    paths:
+      - "*.pkg.tar.zst"
+      - "*.pkg.tar.zst.sig"
+  variables:
+    GIT_STRATEGY: fetch
+    GIT_CLEAN_FLAGS: -ffdx
+    GIT_DEPTH: 0
+
+sync:
+  stage: deploy
+  image: archlinux:latest
+  before_script:
+    - pacman -Sy --noconfirm rclone gnupg binutils
+    - mkdir -p ~/.config/rclone
+    - |
+      cat <<EOF > ~/.config/rclone/rclone.conf
+      [r2]
+      type = s3
+      provider = Cloudflare
+      access_key_id = $R2_ACCESS_KEY
+      secret_access_key = $R2_SECRET_KEY
+      endpoint = $R2_ENDPOINT
+      EOF
+  script:
+    - rclone copy . r2:$R2_BUCKET/x86_64 --include "*.pkg.tar.zst" --include "*.pkg.tar.zst.sig"
+  only:
+    - main
+
+trigger_update:
+  stage: notify
+  image: archlinux:latest
+  script:
+    - |
+      PKG_NAMES=$(echo *.pkg.tar.zst | tr ' ' ',')
+      echo "New packages: $PKG_NAMES"
+
+      curl -X POST \
+        -F "token=$CI_JOB_TOKEN" \
+        -F "ref=main" \
+        -F "variables[NEW_PACKAGES]=$PKG_NAMES" \
+        https://gitlab.com/api/v4/projects/83284824/trigger/pipeline
+  only:
+    - main

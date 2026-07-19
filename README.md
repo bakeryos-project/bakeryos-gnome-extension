@@ -1,4 +1,4 @@
-# BakeryOS Gnome Extension
+# BakeryOS GNOME Extension
 
 ## 📜 License
 
