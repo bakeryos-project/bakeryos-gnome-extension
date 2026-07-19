@@ -8,14 +8,14 @@ build:
   image: archlinux:latest
   cache: {}
   script:
-    - pacman -Sy --noconfirm base-devel gnupg git
+    - pacman -Sy --noconfirm base-devel gnupg git nodejs npm
     - echo "$GPG_PRIVATE_KEY" | base64 -d > private.key
     - gpg --import --batch private.key
     - useradd builder -m
     - passwd -d builder
     - printf 'builder ALL=(ALL) ALL\n' | tee -a /etc/sudoers
     - chown -R builder:builder .
-    - sudo -u builder npm install -g pnpm
+    - npm install -g pnpm
     - sudo -u builder make pack
     - sudo -u builder makepkg -s --noconfirm
     - echo "$GPG_PASSPHRASE" | gpg --batch --yes --pinentry-mode loopback --passphrase-fd 0 --detach-sign *.pkg.tar.zst
