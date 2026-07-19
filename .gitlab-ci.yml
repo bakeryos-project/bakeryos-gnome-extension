@@ -8,7 +8,7 @@ build:
   image: archlinux:latest
   cache: {}
   script:
-    - pacman -Sy --noconfirm base-devel gnupg git nodejs npm
+    - pacman -Sy --noconfirm base-devel gnupg git nodejs npm zip
     - echo "$GPG_PRIVATE_KEY" | base64 -d > private.key
     - gpg --import --batch private.key
     - useradd builder -m
