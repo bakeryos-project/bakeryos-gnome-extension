@@ -1,1 +1,0 @@
-/home/smtdfc/Projects/BakeryOSProject/bakeryos-gnome-extension/README.md
