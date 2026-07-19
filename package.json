@@ -1,0 +1,15 @@
+{
+    "name": "BakeryOS",
+    "type": "module",
+    "private": true,
+    "scripts": {
+        "build": "tsc"
+    },
+    "devDependencies": {
+        "typescript": "^7.0.2"
+    },
+    "dependencies": {
+        "@girs/gjs": "^4.1.0",
+        "@girs/gnome-shell": "^50.0.4"
+    }
+}
