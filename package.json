@@ -3,7 +3,8 @@
     "type": "module",
     "private": true,
     "scripts": {
-        "build": "tsc"
+        "build": "tsc",
+        "pack": "make build && makepkg -s"
     },
     "devDependencies": {
         "typescript": "^7.0.2"

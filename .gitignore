@@ -26,5 +26,4 @@ build_time
 __pycache__
 
 dist
-src
 pkg

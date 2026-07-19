@@ -16,7 +16,6 @@ build:
     - printf 'builder ALL=(ALL) ALL\n' | tee -a /etc/sudoers
     - chown -R builder:builder .
     - npm install -g pnpm
-    - sudo -u builder make pack
     - sudo -u builder makepkg -s --noconfirm
     - echo "$GPG_PASSPHRASE" | gpg --batch --yes --pinentry-mode loopback --passphrase-fd 0 --detach-sign *.pkg.tar.zst
   artifacts:

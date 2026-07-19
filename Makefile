@@ -8,7 +8,7 @@ all: dist/extension.js
 node_modules/.package-lock.json: package.json
 	pnpm install
 
-dist/extension.js dist/prefs.js: node_modules/.package-lock.json *.ts
+dist/extension.js dist/prefs.js: node_modules/.package-lock.json */*.ts
 	pnpm build
 
 schemas/gschemas.compiled: schemas/org.gnome.shell.extensions.$(NAME).gschema.xml
@@ -17,6 +17,7 @@ schemas/gschemas.compiled: schemas/org.gnome.shell.extensions.$(NAME).gschema.xm
 $(NAME).zip: dist/extension.js dist/prefs.js schemas/gschemas.compiled
 	@cp -r schemas dist/
 	@cp metadata.json dist/
+	@cp -r src/styles dist/
 	@(cd dist && zip ../$(NAME).zip -9r .)
 
 pack: $(NAME).zip

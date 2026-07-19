@@ -1,5 +1,6 @@
 {
     "name": "BakeryOS",
+    "version": 1,
     "description": "An extension for BakeryOS",
     "uuid": "bakeryos@bakeryos.smtdfc.space",
     "url": "https://github.com/bakeryos/bakeryos-gnome-extension",

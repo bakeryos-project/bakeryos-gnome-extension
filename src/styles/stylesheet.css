@@ -1,0 +1,14 @@
+.popup-menu-content {
+  border-radius: 8px;
+}
+
+.panel-button,
+.panel-button.clock-display {
+  border-radius: 8px;
+  padding: 8px;
+  margin: 4px;
+}
+
+.quick-toggle-menu {
+  border-radius: 8px !important;
+}
