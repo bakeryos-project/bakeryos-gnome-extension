@@ -19,7 +19,7 @@ jobs:
 
       - name: Install dependencies
         run: |
-          pacman -Sy --noconfirm base-devel gnupg git rclone nodejs npm
+          pacman -Sy --noconfirm base-devel gnupg git rclone nodejs npm zip
           npm install -g pnpm
 
       - uses: dopplerhq/secrets-fetch-action@v2.0.0
