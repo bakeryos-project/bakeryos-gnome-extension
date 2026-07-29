@@ -2,7 +2,7 @@
 
 _extension_name="bakeryos@bakeryos.smtdfc.space"
 pkgname=bakeryos-gnome-extension
-pkgver=ccc0ebb
+pkgver=1.0.0
 pkgrel=1
 pkgdesc="An extension for BakeryOS"
 arch=('x86_64')
@@ -13,9 +13,6 @@ arch=('any')
 source=()
 sha256sums=()
 
-pkgver() {
-    git describe --long --tags --always | sed 's/^v//;s/\([^-]*-g\)/r\1/;s/-/./g'
-}
 
 build() {
     cd $startdir
