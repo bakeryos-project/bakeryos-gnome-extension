@@ -12,7 +12,7 @@ depends=('gcc-libs' 'glibc' 'pacman')
 arch=('any')
 source=()
 sha256sums=()
-
+options=(!debug !strip)
 
 build() {
     cd $startdir
