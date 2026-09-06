@@ -2,7 +2,7 @@
 
 _extension_name="bakeryos@bakeryos.smtdfc.space"
 pkgname=bakeryos-gnome-extension
-pkgver=1.0.0
+pkgver=1.0.1
 pkgrel=1
 pkgdesc="An extension for BakeryOS"
 arch=('x86_64')
