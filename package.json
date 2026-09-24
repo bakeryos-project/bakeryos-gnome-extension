@@ -1,16 +1,16 @@
 {
-    "name": "BakeryOS",
-    "type": "module",
-    "private": true,
-    "scripts": {
-        "build": "tsc",
-        "pack": "make build && makepkg -s"
-    },
-    "devDependencies": {
-        "typescript": "^7.0.2"
-    },
-    "dependencies": {
-        "@girs/gjs": "^4.1.0",
-        "@girs/gnome-shell": "^50.0.4"
-    }
+  "name": "BakeryOS",
+  "type": "module",
+  "private": true,
+  "scripts": {
+    "build": "tsc",
+    "pack": "make all && makepkg -s"
+  },
+  "devDependencies": {
+    "typescript": "^7.0.2"
+  },
+  "dependencies": {
+    "@girs/gjs": "^4.1.0",
+    "@girs/gnome-shell": "^50.0.4"
+  }
 }
