@@ -13,6 +13,7 @@ arch=('any')
 source=()
 sha256sums=()
 options=(!debug !strip)
+makedepends=('pnpm' 'nodejs' 'make')
 
 build() {
     cd $startdir
