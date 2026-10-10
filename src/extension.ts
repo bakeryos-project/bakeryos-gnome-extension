@@ -1,29 +1,33 @@
 import * as Main from 'resource:///org/gnome/shell/ui/main.js';
 import St from 'gi://St';
-import { Extension, } from 'resource:///org/gnome/shell/extensions/extension.js';
-
+import { Extension } from 'resource:///org/gnome/shell/extensions/extension.js';
 
 export default class BakeryOSExtension extends Extension {
-    private _indicator: any = null;
-    private _theme: any = null;
+  private _theme: any = null;
+  private _powerButton: any = null;
+  private _systemIndicator: any = null;
+  private _stylesheetFile: any = null;
 
-    enable() {
+  enable() {
+    this._stylesheetFile = this.dir.get_child('styles/stylesheet.css');
+    const stage = global.stage as any;
+    this._theme = St.ThemeContext.get_for_stage(stage).get_theme();
 
-        let stylesheet = this.dir.get_child('./styles/stylesheet.css');
-        this._theme = St.ThemeContext.get_for_stage(global.stage).get_theme();
-
-        if (stylesheet.query_exists(null)) {
-            this._theme.load_stylesheet(stylesheet);
-            console.log("CSS file loaded!");
-        } else {
-            console.error("CSS file not found at: " + stylesheet.get_path());
-        }
+    if (this._stylesheetFile.query_exists(null)) {
+      this._theme.load_stylesheet(this._stylesheetFile);
+      console.log("CSS file loaded!");
+    } else {
+      console.error("CSS file not found at: " + this._stylesheetFile.get_path());
     }
 
-    disable() {
-      
-        let stylesheet = this.dir.get_child('stylesheet.css');
-        this._theme.unload_stylesheet(stylesheet);
-        this._theme = null;
+  }
+
+  disable() {
+    if (this._theme && this._stylesheetFile) {
+      this._theme.unload_stylesheet(this._stylesheetFile);
     }
+    this._theme = null;
+    this._stylesheetFile = null;
+  }
+
 }
