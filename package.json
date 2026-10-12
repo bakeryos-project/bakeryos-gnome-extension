@@ -1,5 +1,5 @@
 {
-  "name": "BakeryOS",
+  "name": "bakeryos-gnome-extension",
   "type": "module",
   "private": true,
   "scripts": {
