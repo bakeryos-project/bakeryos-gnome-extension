@@ -2,7 +2,7 @@
     "name": "BakeryOS",
     "version": 1,
     "description": "An extension for BakeryOS",
-    "uuid": "bakeryos@bakeryos.smtdfc.space",
+    "uuid": "bakeryos@bakeryos.smtdfc.net",
     "url": "https://github.com/bakeryos/bakeryos-gnome-extension",
     "settings-schema": "org.gnome.shell.extensions.bakeryos",
     "shell-version": [
