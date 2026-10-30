@@ -1,6 +1,10 @@
+
 import * as Main from 'resource:///org/gnome/shell/ui/main.js';
 import St from 'gi://St';
 import { Extension } from 'resource:///org/gnome/shell/extensions/extension.js';
+import GObject from 'gi://GObject';
+import Clutter from 'gi://Clutter';
+import * as PanelMenu from 'resource:///org/gnome/shell/ui/panelMenu.js';
 
 export default class BakeryOSExtension extends Extension {
   private _theme: any = null;
@@ -9,6 +13,8 @@ export default class BakeryOSExtension extends Extension {
   private _stylesheetFile: any = null;
 
   enable() {
+
+    Main.layoutManager.connectObject('startup-complete', () => Main.overview.hide(), this);
     this._stylesheetFile = this.dir.get_child('styles/stylesheet.css');
     const stage = global.stage as any;
     this._theme = St.ThemeContext.get_for_stage(stage).get_theme();
@@ -28,6 +34,7 @@ export default class BakeryOSExtension extends Extension {
     }
     this._theme = null;
     this._stylesheetFile = null;
+    Main.layoutManager.disconnectObject(this);
   }
 
 }
