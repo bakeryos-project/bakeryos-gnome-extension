@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.2.1](https://github.com/bakeryos-project/bakeryos-gnome-extension/compare/v1.2.0...v1.2.1) (2026-10-30)
+
+
+### Bug Fixes
+
+* update extension uuid ([7058db3](https://github.com/bakeryos-project/bakeryos-gnome-extension/commit/7058db3ce97316be9377fd7015904cfd05b56556))
+
 ## [1.2.0](https://github.com/bakeryos-project/bakeryos-gnome-extension/compare/v1.1.4...v1.2.0) (2026-10-30)
 
 
