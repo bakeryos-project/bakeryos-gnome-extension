@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.2.2](https://github.com/bakeryos-project/bakeryos-gnome-extension/compare/v1.2.1...v1.2.2) (2026-11-18)
+
+
+### Bug Fixes
+
+* remove redundant power button ([ae64f16](https://github.com/bakeryos-project/bakeryos-gnome-extension/commit/ae64f16ac94c0167597b63a8325d1c21a349def3))
+
 ## [1.2.1](https://github.com/bakeryos-project/bakeryos-gnome-extension/compare/v1.2.0...v1.2.1) (2026-10-30)
 
 
